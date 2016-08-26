@@ -11,7 +11,7 @@ z <- TSget('EXR.A.USD.EUR.SP00.A', ecb)
 z <- TSget('EXR.A.USD.EUR.SP00.A',start = 2000, end = 2012, ecb)
 
 if(1 != frequency(z)) stop("ECB monthly frequency error.")
-if(2000 != start(z))  stop("ECB monthly start error.")
+if(! all(c(2000,1) == start(z)))  stop("ECB monthly start error.")
 
 
 #### monthly ####
@@ -39,7 +39,9 @@ require("tfplot")
 options(TSconnection=ecb)
 
 z <- TSget("ICP.M.U2.N.000000.4.ANR")# annual rates 
-if(! all(c(1991,1) == start(z))) stop("ECB monthly test 4 start error.")
+#if(! all(c(1991,1) == start(z))) stop("ECB monthly test 4 start error.")
+# this changed to 1997 in early 2016.
+if(! all(c(1997,1) == start(z))) stop("ECB monthly test 4 start error.")
 ##   BUG  ?? tfplot(z)
 
 z <- TSget("ICP.M.U2.N.000000.4.INX")# index 
